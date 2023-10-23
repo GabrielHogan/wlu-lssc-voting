@@ -39,16 +39,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import { toast } from "sonner";
-import { createVote } from "./actions";
-
-export const voteFormSchema = z.object({
-  email: z.string().email(),
-  grade: z
-    .enum(["First Year", "Sophomore", "Junior", "Senior", "1L", "2L", "3L"])
-    .optional(),
-  raffleEntry: z.boolean().optional(),
-  option: z.string(),
-});
+import { createVote, voteFormSchema } from "./actions";
 
 const options = [
   {
@@ -138,7 +129,7 @@ const options = [
   },
 ];
 
-export default function Home() {
+const Page = () => {
   const [selected, setSelected] = useState<string>("none");
   const [openOption, setOpenOption] = useState<string>("none");
   const [isStudent, setIsStudent] = useState<boolean>(false);
@@ -427,4 +418,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
+
+export default Page;
