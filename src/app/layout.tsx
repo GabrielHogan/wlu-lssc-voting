@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   },
   authors: [{ name: "GabrielHogan", url: "https://gabrielhogan.com" }],
   creator: "GabrielHogan",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };
 
 export default function RootLayout({
