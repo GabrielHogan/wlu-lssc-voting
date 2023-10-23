@@ -15,7 +15,7 @@ import { CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { Drawer } from "vaul";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 
 import z from "zod";
 import {
@@ -51,7 +51,7 @@ const formSchema = z.object({
 
 const options = [
   {
-    id: "option1",
+    id: "performanceOption1",
     title: "Cirque Kalabanté",
     content: (
       <>
@@ -74,7 +74,7 @@ const options = [
     embedVideoUrl: "https://www.youtube.com/embed/QdQK6SxR53A",
   },
   {
-    id: "option2",
+    id: "performanceOption2",
     title: "The Sounds of Zamar",
     content: (
       <>
@@ -100,7 +100,7 @@ const options = [
     embedVideoUrl: "https://player.vimeo.com/video/252960325",
   },
   {
-    id: "option3",
+    id: "performanceOption3performanceOption1",
     title: "The Forgotten Kingdom",
     content: (
       <>
@@ -120,7 +120,7 @@ const options = [
     embedVideoUrl: "https://player.vimeo.com/video/663150148",
   },
   {
-    id: "option4",
+    id: "performanceOption4",
     title: "Actors from the London Stage & Residency: Hamlet",
     content: (
       <>
@@ -141,6 +141,7 @@ export default function Home() {
   const [selected, setSelected] = useState<string>("none");
   const [openOption, setOpenOption] = useState<string>("none");
   const [isStudent, setIsStudent] = useState<boolean>(false);
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -148,7 +149,20 @@ export default function Home() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    toast.success("Your response has been recorded!", {});
+    toast(
+      <div>
+        <h1>This is the data you submitted:</h1>
+        <pre>
+          <code>{JSON.stringify(values, null, 2)}</code>
+        </pre>
+      </div>
+    );
+
+    setSelected("none");
+    setOpenOption("none");
+    setIsStudent(false);
+    setDrawerOpen(false);
+    form.reset();
   }
 
   const onInvalid = (errors: any) => console.error(errors);
@@ -236,7 +250,11 @@ export default function Home() {
         })}
       </Accordion>
 
-      <Drawer.Root shouldScaleBackground modal={true}>
+      <Drawer.Root
+        shouldScaleBackground
+        open={drawerOpen}
+        onOpenChange={(e) => setDrawerOpen(e)}
+      >
         <Drawer.Trigger asChild>
           <Button
             size="lg"
@@ -278,7 +296,7 @@ export default function Home() {
                           <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="flname@mail.wlu.edu"
+                              placeholder="Start typing your email..."
                               {...field}
                             />
                           </FormControl>
@@ -361,21 +379,14 @@ export default function Home() {
                       </>
                     )}
 
-                    <Button
-                      type="submit"
-                      onClick={() => {
-                        form.handleSubmit(onSubmit, onInvalid);
-                      }}
-                    >
-                      Submit
-                    </Button>
+                    <Button type="submit">Submit</Button>
                   </form>
                 </Form>
               </div>
             </div>
 
             <div className="p-2 border-t border-muted mt-auto">
-              <div className="flex gap-6 justify-end max-w-lg mx-auto text-muted">
+              <div className="flex items-center justify-center max-w-lg mx-auto text-muted">
                 <p className="text-xs font-extralight">
                   Lenfest Student Selection Committee Polling System by Gabriel
                   Hogan
