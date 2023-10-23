@@ -14,6 +14,7 @@ export const fontSans = FontSans({
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lssc.gabrielhogan.com"),
   title: "W&L Lenfest Student Polling System",
   description:
     "Submit your vote to enter in the raffle and help W&L bring in performers that represent the student body.",
