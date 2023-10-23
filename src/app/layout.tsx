@@ -14,8 +14,25 @@ export const fontSans = FontSans({
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "LSSC Polling",
-  description: "Lenfest Student Selection Committee Polling System",
+  title: "W&L Lenfest Student Polling System",
+  description:
+    "Submit your vote to enter in the raffle and help W&L bring in performers that represent the student body.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://lssc.gabrielhogan.com",
+    siteName: "W&L Lenfest Student Polling System",
+    images: [
+      {
+        url: "https://generalssports.com/images/2020/3/11/Colonnade5.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Washington and Lee University Colonnade",
+      },
+    ],
+  },
+  authors: [{ name: "GabrielHogan", url: "https://gabrielhogan.com" }],
+  creator: "GabrielHogan",
 };
 
 export default function RootLayout({
@@ -28,7 +45,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <Providers>{children}</Providers>
