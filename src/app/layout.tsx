@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://lssc.gabrielhogan.com",
     siteName: "W&L Lenfest Student Polling System",
+    title: "W&L Lenfest Student Polling System",
+    description:
+      "Submit your vote to enter in the raffle and help W&L bring in performers that represent the student body.",
     images: [
       {
         url: "https://generalssports.com/images/2020/3/11/Colonnade5.jpg",
