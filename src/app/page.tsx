@@ -105,7 +105,7 @@ const options = [
     embedVideoUrl: "https://player.vimeo.com/video/252960325",
   },
   {
-    id: "performanceOption3performanceOption1",
+    id: "performanceOption3",
     title: "The Forgotten Kingdom",
     content: (
       <>
