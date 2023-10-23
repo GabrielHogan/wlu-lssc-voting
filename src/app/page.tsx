@@ -39,7 +39,20 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import { toast } from "sonner";
-import { createVote, voteFormSchema } from "./actions";
+import { createVote } from "./actions";
+import Link from "next/link";
+import Icon from "@/components/branding/Icon";
+
+const voteFormSchema = z.object({
+  email: z.string().email(),
+  grade: z
+    .enum(["First Year", "Sophomore", "Junior", "Senior", "1L", "2L", "3L"])
+    .optional(),
+  raffleEntry: z.boolean().optional(),
+  option: z.string(),
+});
+
+export type voteFormValues = z.infer<typeof voteFormSchema>;
 
 const options = [
   {
@@ -136,11 +149,11 @@ const Page = () => {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const form = useForm<z.infer<typeof voteFormSchema>>({
+  const form = useForm<voteFormValues>({
     resolver: zodResolver(voteFormSchema),
   });
 
-  const onSubmit = async (values: z.infer<typeof voteFormSchema>) => {
+  const onSubmit = async (values: voteFormValues) => {
     setIsLoading(true);
 
     const data = await createVote(values);
@@ -401,20 +414,42 @@ const Page = () => {
               </div>
             </div>
 
-            <div className="p-2 border-t border-muted mt-auto">
-              <div className="flex items-center justify-center max-w-lg mx-auto text-muted">
-                <p className="text-xs font-extralight">
-                  Lenfest Student Selection Committee Polling System by Gabriel
-                  Hogan
-                </p>
+            <div className="p-2 border-t border-muted bg-background fixed bottom-0 right-0 left-0 flex items-center justify-between">
+              <div className="flex items-center ">
+                <p className="text-xs font-light ">Powered by </p>
+                <Link
+                  className="flex items-center"
+                  href="https://gabrielhogan.com"
+                >
+                  <Icon className="mr-0 h-8 w-8 rounded-md text-blue-950 dark:text-white" />
+                  <h1 className="text-lg font-bold">
+                    <span className="text-blue-950 dark:text-white">
+                      Glacier
+                    </span>
+                    <span className="text-blue-500">Edu</span>
+                  </h1>
+                </Link>
               </div>
+
+              <ThemeSwitcher className="scale-125" />
             </div>
           </Drawer.Content>
         </Drawer.Portal>
       </Drawer.Root>
 
-      <div className="fixed bottom-5 right-5">
-        <ThemeSwitcher className="scale-150" />
+      <div className="p-2 border-t border-muted bg-background fixed bottom-0 right-0 left-0 flex items-center justify-between">
+        <div className="flex items-center ">
+          <p className="text-xs font-light ">Powered by </p>
+          <Link className="flex items-center" href="https://gabrielhogan.com">
+            <Icon className="mr-0 h-8 w-8 rounded-md text-blue-950 dark:text-white" />
+            <h1 className="text-lg font-bold">
+              <span className="text-blue-950 dark:text-white">Glacier</span>
+              <span className="text-blue-500">Edu</span>
+            </h1>
+          </Link>
+        </div>
+
+        <ThemeSwitcher className="scale-125" />
       </div>
     </main>
   );
