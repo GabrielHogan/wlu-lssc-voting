@@ -11,11 +11,11 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { cn } from "@/lib/utils";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Drawer } from "vaul";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import z from "zod";
 import {
@@ -39,11 +39,12 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import { toast } from "sonner";
+import { createVote } from "./actions";
 
-const formSchema = z.object({
+export const voteFormSchema = z.object({
   email: z.string().email(),
   grade: z
-    .enum(["First Year", "Sophomore", "Junion", "Senior", "1L", "2L", "3L"])
+    .enum(["First Year", "Sophomore", "Junior", "Senior", "1L", "2L", "3L"])
     .optional(),
   raffleEntry: z.boolean().optional(),
   option: z.string(),
@@ -142,17 +143,35 @@ export default function Home() {
   const [openOption, setOpenOption] = useState<string>("none");
   const [isStudent, setIsStudent] = useState<boolean>(false);
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof voteFormSchema>>({
+    resolver: zodResolver(voteFormSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof voteFormSchema>) => {
+    setIsLoading(true);
+
+    const data = await createVote(values);
+
+    if (!data) {
+      toast.error(
+        "An error occurred while submitting your vote. Please try again later."
+      );
+      return;
+    }
+
+    console.log(data);
+
     toast(
-      <div>
-        <h1>This is the data you submitted:</h1>
-        <pre>
+      <div className="space-y-1">
+        <h1 className="font-bold">Thank You! Vote Submitted! 🎉</h1>
+        <p>
+          Thank you for voting! You can view your submission below. If you
+          entered the raffle, you will be contacted via email if you win!
+        </p>
+
+        <pre className="bg-background text-white rounded-md p-2">
           <code>{JSON.stringify(values, null, 2)}</code>
         </pre>
       </div>
@@ -163,9 +182,8 @@ export default function Home() {
     setIsStudent(false);
     setDrawerOpen(false);
     form.reset();
-  }
-
-  const onInvalid = (errors: any) => console.error(errors);
+    setIsLoading(false);
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 md:max-w-2xl container mx-auto space-y-8">
@@ -284,7 +302,7 @@ export default function Home() {
 
                 <Form {...form}>
                   <form
-                    onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+                    onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-8 flex flex-col"
                   >
                     <FormField
@@ -379,7 +397,14 @@ export default function Home() {
                       </>
                     )}
 
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit" disabled={isLoading}>
+                      {isLoading ? (
+                        <Loader2 className="h-6 w-6 mr-2 animate-spin" />
+                      ) : (
+                        <CheckCircle className="h-6 w-6 mr-2" />
+                      )}
+                      Submit
+                    </Button>
                   </form>
                 </Form>
               </div>

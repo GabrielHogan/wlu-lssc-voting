@@ -1,9 +1,19 @@
+import { db } from "@/lib/db";
+import { vote } from "@/lib/db/schema";
 import { FC } from "react";
 
-interface pageProps {}
+interface PageProps {}
 
-const page: FC<pageProps> = ({}) => {
-  return <div>Backend Page</div>;
+const Page: FC<PageProps> = async ({}) => {
+  const results = await db.select().from(vote);
+
+  return (
+    <div>
+      <pre>
+        <code>{JSON.stringify(results, null, 2)}</code>
+      </pre>
+    </div>
+  );
 };
 
-export default page;
+export default Page;
