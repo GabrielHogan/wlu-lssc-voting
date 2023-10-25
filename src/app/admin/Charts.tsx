@@ -3,7 +3,6 @@
 import { FC } from "react";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
 import { Vote } from "../types/db";
-import { options } from "../page";
 import {
   Card,
   CardContent,
@@ -19,9 +18,15 @@ interface ChartsProps {
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Charts: FC<ChartsProps> = ({ results }) => {
+  const options = [
+    "performanceOption1",
+    "performanceOption2",
+    "performanceOption3",
+    "performanceOption4",
+  ];
   const optionsData = options.map((opt) => ({
-    name: opt.id,
-    value: results.filter((res) => res.option === opt.id).length,
+    name: opt,
+    value: results.filter((res) => res.option === opt).length,
   }));
   const optionsWinner = optionsData.reduce((prev, current) =>
     prev.value > current.value ? prev : current

@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import { FC } from "react";
 import Charts from "./Charts";
-import { options } from "../page";
 import { format } from "date-fns";
 
 interface PageProps {}

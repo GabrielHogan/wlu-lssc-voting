@@ -55,7 +55,7 @@ const voteFormSchema = z.object({
 
 export type voteFormValues = z.infer<typeof voteFormSchema>;
 
-export const options = [
+const options = [
   {
     id: "performanceOption1",
     title: "Cirque Kalabanté",
