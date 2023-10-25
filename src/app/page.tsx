@@ -192,11 +192,18 @@ const Page = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 md:max-w-2xl container mx-auto space-y-8">
       <div className="text-center space-y-1 [&_*]:transition-all [&_*]:duration-1000">
+        <div>
+          <h3 className="italic text-xs">Presented by</h3>
+          <h2 className="italic text-sm">
+            The Lenfest Student Selection Committee
+          </h2>
+        </div>
+
         <h1 className="sm:text-4xl text-2xl font-bold">
           Select your favorite!
         </h1>
 
-        <p className="sm:text-[16px] text-[12px] font-medium text-muted-foreground p-0">
+        <p className="sm:text-[16px] text-[12px] font-normal text-muted-foreground p-0">
           Select your favorite performance below. <br />
           Click the titles to learn more.
         </p>
