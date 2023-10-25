@@ -42,6 +42,7 @@ import { toast } from "sonner";
 import { createVote } from "./actions";
 import Link from "next/link";
 import Icon from "@/components/branding/Icon";
+import Footer from "@/components/Footer";
 
 const voteFormSchema = z.object({
   email: z.string().email(),
@@ -54,7 +55,7 @@ const voteFormSchema = z.object({
 
 export type voteFormValues = z.infer<typeof voteFormSchema>;
 
-const options = [
+export const options = [
   {
     id: "performanceOption1",
     title: "Cirque Kalabanté",
@@ -190,7 +191,7 @@ const Page = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 md:max-w-2xl container mx-auto space-y-8">
+    <div className="flex md:max-w-2xl flex-col items-center justify-center space-y-8 mx-auto min-h-[90vh]">
       <div className="text-center space-y-1 [&_*]:transition-all [&_*]:duration-1000">
         <div>
           <h3 className="italic text-xs">Presented by</h3>
@@ -421,44 +422,11 @@ const Page = () => {
               </div>
             </div>
 
-            <div className="p-2 border-t border-muted bg-background fixed bottom-0 right-0 left-0 flex items-center justify-between">
-              <div className="flex items-center ">
-                <p className="text-xs font-light ">Powered by </p>
-                <Link
-                  className="flex items-center"
-                  href="https://gabrielhogan.com"
-                >
-                  <Icon className="mr-0 h-8 w-8 rounded-md text-blue-950 dark:text-white" />
-                  <h1 className="text-lg font-bold">
-                    <span className="text-blue-950 dark:text-white">
-                      Glacier
-                    </span>
-                    <span className="text-blue-500">Edu</span>
-                  </h1>
-                </Link>
-              </div>
-
-              <ThemeSwitcher className="scale-125" />
-            </div>
+            <Footer />
           </Drawer.Content>
         </Drawer.Portal>
       </Drawer.Root>
-
-      <div className="p-2 border-t border-muted bg-background fixed bottom-0 right-0 left-0 flex items-center justify-between">
-        <div className="flex items-center ">
-          <p className="text-xs font-light ">Powered by </p>
-          <Link className="flex items-center" href="https://gabrielhogan.com">
-            <Icon className="mr-0 h-8 w-8 rounded-md text-blue-950 dark:text-white" />
-            <h1 className="text-lg font-bold">
-              <span className="text-blue-950 dark:text-white">Glacier</span>
-              <span className="text-blue-500">Edu</span>
-            </h1>
-          </Link>
-        </div>
-
-        <ThemeSwitcher className="scale-125" />
-      </div>
-    </main>
+    </div>
   );
 };
 
