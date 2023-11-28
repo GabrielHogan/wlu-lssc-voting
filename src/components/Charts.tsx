@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
-import { Vote } from "../types/db";
+import { Vote } from "../app/types/db";
 import {
   Card,
   CardContent,

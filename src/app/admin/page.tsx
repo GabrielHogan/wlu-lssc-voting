@@ -16,7 +16,7 @@ import {
   Ticket,
 } from "lucide-react";
 import { FC } from "react";
-import Charts from "./Charts";
+import Charts from "@/components/Charts";
 import { format } from "date-fns";
 
 interface PageProps {}
