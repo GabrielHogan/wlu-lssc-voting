@@ -13,4 +13,5 @@ export default {
     connectionString: process.env.DATABASE_URL,
   },
   breakpoints: true,
+  tablesFilter: ["deans_*"],
 } satisfies Config;

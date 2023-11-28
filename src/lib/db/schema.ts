@@ -1,10 +1,12 @@
 import {
   bigint,
   boolean,
-  mysqlTable,
+  mysqlTableCreator,
   timestamp,
   varchar,
 } from "drizzle-orm/mysql-core";
+
+const mysqlTable = mysqlTableCreator((name) => `deans_${name}`);
 
 export const vote = mysqlTable("vote", {
   id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),

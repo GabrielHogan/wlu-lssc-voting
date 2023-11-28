@@ -15,16 +15,21 @@ interface ChartsProps {
   results: Vote[];
 }
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+import { options } from "@/app/options";
+
+const COLORS = [
+  "#667eea",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#ff4125",
+  "#A0AEC0",
+];
 
 const Charts: FC<ChartsProps> = ({ results }) => {
-  const options = [
-    "performanceOption1",
-    "performanceOption2",
-    "performanceOption3",
-    "performanceOption4",
-  ];
-  const optionsData = options.map((opt) => ({
+  const optionIds = options.map((opt) => opt.id);
+
+  const optionsData = optionIds.map((opt) => ({
     name: opt,
     value: results.filter((res) => res.option === opt).length,
   }));

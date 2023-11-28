@@ -21,14 +21,14 @@ import { format } from "date-fns";
 
 interface PageProps {}
 
-// // oh yeah, this is the future
-// export const runtime = "edge";
-
 const Page: FC<PageProps> = async ({}) => {
   const results = await db.select().from(vote);
 
-  const surveyLiveSince =
-    new Date().getTime() - results[0].created_at.getTime();
+  let surveyLiveSince = new Date().getTime();
+
+  if (results.length !== 0) {
+    surveyLiveSince = new Date().getTime() - results[0].created_at.getTime();
+  }
 
   // check for duplicates by looking for responses with the same email
   const duplicatesCount =
