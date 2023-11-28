@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
 import "@/styles/globals.css";
@@ -36,7 +36,14 @@ export const metadata: Metadata = {
   },
   authors: [{ name: "GabrielHogan", url: "https://gabrielhogan.com" }],
   creator: "GabrielHogan",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
