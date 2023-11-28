@@ -14,7 +14,9 @@ const Footer: FC<FooterProps> = ({}) => {
           <Link className="flex items-center" href="https://gabrielhogan.com">
             <Icon className="mr-0 h-8 w-8 rounded-md text-blue-950 dark:text-white" />
             <h1 className="text-lg font-bold">
-              <span className="text-blue-950 dark:text-white">Glacier</span>
+              <span className="text-blue-950 dark:text-white mr-1">
+                Glacier
+              </span>
               <span className="text-emerald-500">Learn</span>
             </h1>
           </Link>
