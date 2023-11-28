@@ -43,6 +43,7 @@ import { createVote } from "./actions";
 import Link from "next/link";
 import Icon from "@/components/branding/Icon";
 import Footer from "@/components/Footer";
+import { options } from "./options";
 
 const voteFormSchema = z.object({
   email: z.string().email(),
@@ -54,94 +55,6 @@ const voteFormSchema = z.object({
 });
 
 export type voteFormValues = z.infer<typeof voteFormSchema>;
-
-const options = [
-  {
-    id: "performanceOption1",
-    title: "Cirque Kalabanté",
-    content: (
-      <>
-        <p>
-          Afrique en Cirque is a show by Yamoussa Bangoura, inspired by daily
-          life in Guinea. This performance shares the beauty, youth and artistry
-          of African culture. A colorful show beyond its scenery, costumes and
-          staging, it makes any theater vibrate with energy and represents the
-          strength, agility and life’s joys of young Africans.
-        </p>
-
-        <p>
-          The audience will see acrobats execute gravity-defying moves and human
-          pyramids, accompanied by the contemporary sounds of live Afro-Jazz,
-          percussion and kora. Welcome to the universe of Kalabanté Productions
-          and prepare for an unforgettable journey.
-        </p>
-      </>
-    ),
-    embedVideoUrl: "https://www.youtube.com/embed/QdQK6SxR53A",
-  },
-  {
-    id: "performanceOption2",
-    title: "The Sounds of Zamar",
-    content: (
-      <>
-        <p>
-          Trey McLaughlin & The Sounds of Zamar have carved a unique place for
-          themselves in the music industry through soul-stirring arrangements of
-          contemporary gospel, musical theater, and rich original compositions.
-          The ensemble, organized in 2009, has performed with gospel greats such
-          as William McDowell, Kierra “Kiki” Sheard, Richard Smallwood, VaShawn
-          Mitchell, Earnest Pugh, and James Fortune.
-        </p>
-
-        <p>
-          Hailing from Augusta, GA, McLaughlin & The Sounds of Zamar are known
-          for their opulent harmonies and beautiful blends, which are showcased
-          throughout their 2012 album Limitless. The 14-track compilation is
-          sprinkled with ballads and anthems of original songs giving glory to
-          God that will bring inspiration and joy to the hearts of those who
-          listen.
-        </p>
-      </>
-    ),
-    embedVideoUrl: "https://player.vimeo.com/video/252960325",
-  },
-  {
-    id: "performanceOption3",
-    title: "The Forgotten Kingdom",
-    content: (
-      <>
-        <p>
-          This video show honors often-unheard female voices, exploring familial
-          love, ethnic tensions and the ways ordinary people navigate
-          cataclysmic change in a multicultural society. Drawing on the story of
-          the unraveling Ottoman Empire, the show takes us on an intensely
-          emotional journey into a child’s memories of her parent’ vibrant and
-          multiethnic Mediterranean world, brought to life with a riveting
-          musical score, radio-theater stories, and the breathtakingly dreamlike
-          sand animation of world renowned Ukrainian artist (and America’s Got
-          Talent favorite) Kseniya Simonova.
-        </p>
-      </>
-    ),
-    embedVideoUrl: "https://player.vimeo.com/video/663150148",
-  },
-  {
-    id: "performanceOption4",
-    title: "Actors from the London Stage & Residency: Hamlet",
-    content: (
-      <>
-        <p>
-          Founded in 1975, Actors From The London Stage (AFTLS) is one of the
-          oldest touring Shakespeare theatre companies in the world. Housed and
-          workshopped in the UK and based in the United States at Shakespeare at
-          Notre Dame, this intensive residency program is truly one of a kind.
-        </p>
-      </>
-    ),
-    embedVideoUrl:
-      "https://www.youtube.com/embed/21V1wYs07K0?si=aU1_rQ7JnVIkAuix",
-  },
-];
 
 const Page = () => {
   const [selected, setSelected] = useState<string>("none");
@@ -191,12 +104,12 @@ const Page = () => {
   };
 
   return (
-    <div className="flex md:max-w-2xl flex-col items-center justify-center space-y-8 mx-auto min-h-[90vh]">
+    <div className="flex md:max-w-2xl flex-col items-center justify-center space-y-8 mx-auto min-h-[90vh] mb-20">
       <div className="text-center space-y-1 [&_*]:transition-all [&_*]:duration-1000">
         <div>
-          <h3 className="italic text-xs">Presented by</h3>
+          {/* <h3 className="italic text-xs">Presented by</h3> */}
           <h2 className="italic text-sm">
-            The Lenfest Student Selection Committee
+            Lenfest Center for the Arts’ Selections 24-25
           </h2>
         </div>
 

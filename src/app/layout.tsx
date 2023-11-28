@@ -15,18 +15,16 @@ export const fontSans = FontSans({
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lssc.gabrielhogan.com"),
-  title: "W&L Lenfest Student Polling System",
-  description:
-    "Submit your vote to enter in the raffle and help W&L bring in performers that represent the student body.",
+  metadataBase: new URL("https://deans.lssc.gabrielhogan.com"),
+  title: "W&L Lenfest Polling System",
+  description: "Submit your vote.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://lssc.gabrielhogan.com",
-    siteName: "W&L Lenfest Student Polling System",
-    title: "W&L Lenfest Student Polling System",
-    description:
-      "Submit your vote to enter in the raffle and help W&L bring in performers that represent the student body.",
+    url: "https://deans.lssc.gabrielhogan.com",
+    siteName: "W&L Lenfest Polling System",
+    title: "W&L Lenfest Polling System",
+    description: "Submit your vote.",
     images: [
       {
         url: "https://generalssports.com/images/2020/3/11/Colonnade5.jpg",
