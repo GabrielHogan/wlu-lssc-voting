@@ -156,4 +156,59 @@ export const options = [
     ),
     embedVideoUrl: "https://www.youtube.com/embed/QacQpKbBJEU",
   },
+  {
+    id: "drumlineLive",
+    title: "Drumline Live",
+    content: (
+      <>
+        <p>
+          DRUMLine Live embodies the soulful, high-stepping style of the
+          Historically Black College and University (HBCU) marching band
+          tradition. With riveting rhythms, bold beats, and ear-grabbing energy,
+          this stage show is a synchronized musical showcase of the HBCU
+          experience. Incorporating original compositions and soul-infused
+          interpretations of top 40 hits, group performances range from
+          colorful, choreographed routines to heavy doses of drum riffs and
+          cadences.
+        </p>
+
+        <p>
+          DRUMLine Live is a show-stopping attraction that will bring you to
+          your feet by halftime! See the band that performed with Beyoncé in her
+          headlining performance at Coachella!
+        </p>
+      </>
+    ),
+    embedVideoUrl: "https://www.youtube.com/embed/mkBo5cPsdLM",
+  },
+  {
+    id: "utteranceOfMyName",
+    title: "I am the utterance of my name: Divining Mary Magdalene",
+    content: (
+      <>
+        <p>
+          Silenced as an apostle, framed as a prostitute, portrayed as the wife,
+          mythologized as a hermit and tantric priestess, exalted as Goddess,
+          Mary Magdalene has always been controversial and dangerous to the
+          status quo. I am the utterance of my name: Divining Mary Magdalene is
+          a music-theater piece untangling and illuminating the many surrounding
+          beliefs, myths, contradictions, iconography, and decrees, in search of
+          Magdalene and the meaning of her radical Gospel.
+        </p>
+
+        <p>
+          Drawing from ancient texts, artworks, contemporary scholarship, and
+          representations in contemporary culture, Sylvia Milo’s portrayal
+          creates a prismatic image of Mary Magdalene in seven apparitions.
+          Nathan Davis performs the rich musical score live onstage using
+          instruments both ancient and modern – hammered dulcimer, harmonium,
+          and hand drums – interweaving the sound design with field recordings
+          from sites significant to the myths. A radiant video projection design
+          and choreography expand the space — and our understanding of this
+          essential story.
+        </p>
+      </>
+    ),
+    embedVideoUrl: "https://player.vimeo.com/video/787081280",
+  },
 ];
