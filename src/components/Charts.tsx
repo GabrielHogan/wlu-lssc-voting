@@ -24,6 +24,9 @@ const COLORS = [
   "#FF8042",
   "#ff4125",
   "#A0AEC0",
+  "#FFC0CB",
+  "#00FFFF",
+  "#0000FF",
 ];
 
 const Charts: FC<ChartsProps> = ({ results }) => {
