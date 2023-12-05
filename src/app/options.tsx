@@ -211,4 +211,37 @@ export const options = [
     ),
     embedVideoUrl: "https://player.vimeo.com/video/787081280",
   },
+  {
+    id: "manualCinema",
+    title: "Manual Cinema's Frankenstein",
+    content: (
+      <>
+        <p>
+          Love, loss, and creation merge in unexpected ways as Manual Cinema
+          presents its thrilling version of the classic Gothic tale
+          Frankenstein. The Chicago-based performance collective imaginatively
+          combines shadow puppetry, cinematic techniques, sound effects, and
+          live music in haunting shows like nothing else you’ve ever seen.
+        </p>
+
+        <p>
+          Manual Cinema stitches together the classic tale of Frankenstein with
+          the biography of the original novel’s author, Mary Shelley, to create
+          an unexpected story about the beauty and horror of creation. The
+          real-life and fictional narratives of Shelley, Victor Frankenstein,
+          and Frankenstein’s monster expose how family, community, and education
+          shape personhood – or destroy it by their absence.
+        </p>
+
+        <p>
+          Court Theatre presented the World Premiere of Frankenstein in Chicago,
+          November, 2018. Frankenstein had its New York premiere at The Public
+          Theatre’s Under the Radar Festival in January 2019 and it’s
+          international debut in Scotland at the Edinburgh Fringe Festival in
+          August, 2019.
+        </p>
+      </>
+    ),
+    embedVideoUrl: "https://player.vimeo.com/video/296486041",
+  },
 ];
