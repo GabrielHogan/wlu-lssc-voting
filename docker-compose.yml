@@ -5,9 +5,12 @@ services:
     image: postgres:14-alpine
     ports:
       - 5433:5432
-    # volumes:
-    #   - ~/apps/postgres:/var/lib/postgresql/data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=votes
       - POSTGRES_USER=VoteUser
       - POSTGRES_PASSWORD=VotePassword
+
+volumes:
+  postgres_data:
