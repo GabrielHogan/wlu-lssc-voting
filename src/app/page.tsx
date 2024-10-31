@@ -1,6 +1,8 @@
 import VoteForm from "@/components/VoteForm";
 import { db } from "@/db/drizzle";
 
+export const dynamic = "force-dynamic";
+
 const PollPage = async () => {
   const poll = await db.query.polls.findFirst({
     where: (polls, { gte }) => gte(polls.endsAt, new Date()),

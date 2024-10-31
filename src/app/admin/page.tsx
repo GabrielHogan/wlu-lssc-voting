@@ -20,10 +20,9 @@ import { format } from "date-fns";
 import { db } from "@/db/drizzle";
 import { votes } from "@/db/schema";
 
-interface PageProps {}
+export const dynamic = "force-dynamic";
 
-// // oh yeah, this is the future
-// export const runtime = "edge";
+interface PageProps {}
 
 const Page: FC<PageProps> = async ({}) => {
   const poll = await db.query.polls.findFirst();
