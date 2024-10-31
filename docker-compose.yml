@@ -7,6 +7,7 @@ services:
       - 5433:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
     environment:
       - POSTGRES_DB=votes
       - POSTGRES_USER=VoteUser
