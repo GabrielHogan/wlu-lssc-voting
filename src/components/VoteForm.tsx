@@ -42,8 +42,6 @@ import {
 } from "@/components/ui/Select";
 import { toast } from "sonner";
 
-import Link from "next/link";
-import Icon from "@/components/branding/Icon";
 import Footer from "@/components/Footer";
 import { createVote } from "@/app/actions";
 import { Option } from "@/db/schema";
@@ -70,6 +68,11 @@ const VoteForm: FC<VoteFormProps> = ({ options, pollId }) => {
   const [isStudent, setIsStudent] = useState<boolean>(false);
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  if (!window) return null;
+
+  // randomize options
+  options.sort(() => Math.random() - 0.5);
 
   const form = useForm<voteFormValues>({
     resolver: zodResolver(voteFormSchema),
