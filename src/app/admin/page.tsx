@@ -6,8 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { db } from "@/lib/db";
-import { vote } from "@/lib/db/schema";
+
 import {
   ActivitySquare,
   Clock,
@@ -16,8 +15,10 @@ import {
   Ticket,
 } from "lucide-react";
 import { FC } from "react";
-import Charts from "./Charts";
+// import Charts from "./Charts";
 import { format } from "date-fns";
+import { db } from "@/db/drizzle";
+import { votes } from "@/db/schema";
 
 interface PageProps {}
 
@@ -25,20 +26,23 @@ interface PageProps {}
 // export const runtime = "edge";
 
 const Page: FC<PageProps> = async ({}) => {
-  const results = await db.select().from(vote);
+  const poll = await db.query.polls.findFirst();
 
-  const surveyLiveSince =
-    new Date().getTime() - results[0].created_at.getTime();
+  if (!poll) {
+    return (
+      <main className="flex-1 flex items-center justify-center">
+        <h1 className="text-3xl font-bold text-center">
+          No polls found. Please create a poll to get started.
+        </h1>
+      </main>
+    );
+  }
 
-  // check for duplicates by looking for responses with the same email
-  const duplicatesCount =
-    results.reduce((acc, curr) => {
-      const count = results.filter((res) => res.email === curr.email).length;
-      if (count > 1) {
-        return acc + 1;
-      }
-      return acc;
-    }, 0) / 2;
+  const results = await db.query.votes.findMany({
+    where: (votes, { eq }) => eq(votes.pollId, poll.id),
+  });
+
+  const surveyLiveSince = new Date(Date.now() - poll.createdAt.getTime());
 
   return (
     // <div className="space-y-2">
@@ -73,7 +77,7 @@ const Page: FC<PageProps> = async ({}) => {
           <CardContent>
             <div className="text-2xl font-bold">{results.length}</div>
             <p className="text-xs text-muted-foreground">
-              +100% from last week
+              {/* +100% from last week */}
             </p>
           </CardContent>
         </Card>
@@ -91,12 +95,12 @@ const Page: FC<PageProps> = async ({}) => {
               {results.filter((res) => res.raffleEntry).length}
             </div>
             <p className="text-xs text-muted-foreground">
-              +100% from last week
+              {/* +100% from last week */}
             </p>
           </CardContent>
         </Card>
 
-        <Card className="hidden md:block">
+        {/* <Card className="hidden md:block">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-0">
             <CardTitle className="text-md font-medium">Duplicates</CardTitle>
             <CopySlash className="h-4 w-4" />
@@ -107,7 +111,7 @@ const Page: FC<PageProps> = async ({}) => {
               +100% from last week
             </p>
           </CardContent>
-        </Card>
+        </Card> */}
 
         <Card className="hidden md:block">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-0">
@@ -125,7 +129,13 @@ const Page: FC<PageProps> = async ({}) => {
         </Card>
       </div>
 
-      <Charts results={results} />
+      <p>Charts Coming Back Soon</p>
+
+      <h1 className="font-bold text-xl">
+        These stats are inaccurate and should not currently be used.
+      </h1>
+
+      {/* <Charts results={results} /> */}
     </main>
   );
 };

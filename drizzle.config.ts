@@ -1,16 +1,11 @@
-import type { Config } from "drizzle-kit";
-import "dotenv/config";
+import { defineConfig } from "drizzle-kit";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is not defined");
-}
-
-export default {
-  driver: "mysql2",
-  schema: "./src/lib/db/schema.ts",
-  out: "./src/lib/db/migrations",
+export default defineConfig({
+  dialect: "postgresql",
+  schema: "src/db/schema.ts",
+  out: "./drizzle",
   dbCredentials: {
-    connectionString: process.env.DATABASE_URL,
+    url: process.env.DB_URL!,
+    // url: "postgres://CaresUser:CaresPassword@localhost:5433/cares",
   },
-  breakpoints: true,
-} satisfies Config;
+});
