@@ -2,15 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import "@/styles/globals.css";
-import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/Providers";
 import Footer from "@/components/Footer";
-
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,7 +45,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased p-8 container mx-auto",
-          fontSans.variable
+          inter.className
         )}
       >
         <Providers>

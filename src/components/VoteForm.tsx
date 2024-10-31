@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import {
@@ -68,11 +68,6 @@ const VoteForm: FC<VoteFormProps> = ({ options, pollId }) => {
   const [isStudent, setIsStudent] = useState<boolean>(false);
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  if (!window) return null;
-
-  // randomize options
-  options.sort(() => Math.random() - 0.5);
 
   const form = useForm<voteFormValues>({
     resolver: zodResolver(voteFormSchema),

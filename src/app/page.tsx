@@ -25,6 +25,9 @@ const PollPage = async () => {
     .map((o) => o.option)
     .filter((option) => option !== null);
 
+  // Randomize the order of the options
+  options.sort(() => Math.random() - 0.5);
+
   if (!options.length) {
     return (
       <div className="flex items-center justify-center h-[90vh]">
