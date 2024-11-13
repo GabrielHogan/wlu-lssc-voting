@@ -1,0 +1,1 @@
+ALTER TABLE "vote" ALTER COLUMN "email" DROP NOT NULL;

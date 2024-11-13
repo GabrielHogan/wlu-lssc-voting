@@ -27,7 +27,7 @@ export const votes = pgTable("vote", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
 
-  email: text("email").notNull(),
+  email: text("email"),
   grade: text("grade"),
   raffleEntry: boolean("raffleEntry"),
 

@@ -8,6 +8,13 @@
       "when": 1730352250806,
       "tag": "0000_abnormal_mysterio",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1731518581360,
+      "tag": "0001_known_hellcat",
+      "breakpoints": true
     }
   ]
 }

@@ -43,7 +43,7 @@ import {
 import { toast } from "sonner";
 
 import Footer from "@/components/Footer";
-import { createVote } from "@/app/actions";
+import { createInitalVote, createVote } from "@/app/actions";
 import { Option } from "@/db/schema";
 
 const voteFormSchema = z.object({
@@ -68,6 +68,7 @@ const VoteForm: FC<VoteFormProps> = ({ options, pollId }) => {
   const [isStudent, setIsStudent] = useState<boolean>(false);
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [initialVoteId, setInitialVoteId] = useState<string | null>(null);
 
   const form = useForm<voteFormValues>({
     resolver: zodResolver(voteFormSchema),
@@ -76,7 +77,11 @@ const VoteForm: FC<VoteFormProps> = ({ options, pollId }) => {
   const onSubmit = async (values: voteFormValues) => {
     setIsLoading(true);
 
-    const { data, error } = await createVote(values, pollId);
+    const { data, error } = await createVote(
+      values,
+      pollId,
+      initialVoteId ?? undefined
+    );
 
     if (error) {
       toast.error(error);
@@ -194,21 +199,39 @@ const VoteForm: FC<VoteFormProps> = ({ options, pollId }) => {
       </Accordion>
 
       <Drawer.Root open={drawerOpen} onOpenChange={(e) => setDrawerOpen(e)}>
-        <Drawer.Trigger asChild>
-          <Button
-            size="lg"
-            className={cn(
-              {
-                "scale-0": selected == "none",
-                "scale-100": selected != "none",
-              },
-              "transition-all duration-1000"
-            )}
-          >
-            <CheckCircle className="h-6 w-6 mr-2" />
-            Continue
-          </Button>
-        </Drawer.Trigger>
+        {/* <Drawer.Trigger asChild> */}
+        <Button
+          size="lg"
+          className={cn(
+            {
+              "scale-0": selected == "none",
+              "scale-100": selected != "none",
+            },
+            "transition-all duration-1000"
+          )}
+          onClick={async () => {
+            const { data, error } = await createInitalVote(selected, pollId);
+
+            if (error) {
+              toast.error(error);
+              return;
+            }
+
+            if (!data) {
+              toast.error(
+                "An error occurred while submitting your vote. Please try again later."
+              );
+              return;
+            }
+
+            setInitialVoteId(data.id);
+            setDrawerOpen(true);
+          }}
+        >
+          <CheckCircle className="h-6 w-6 mr-2" />
+          Continue
+        </Button>
+        {/* </Drawer.Trigger> */}
 
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-foreground/5" />
