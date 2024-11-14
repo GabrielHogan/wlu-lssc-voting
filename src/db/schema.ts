@@ -54,8 +54,12 @@ export const polls = pgTable("poll", {
 export const pollsToOptions = pgTable(
   "polls_to_options",
   {
-    pollId: text("poll_id").references(() => polls.id),
-    optionId: text("option_id").references(() => options.id),
+    pollId: text("poll_id")
+      .references(() => polls.id)
+      .notNull(),
+    optionId: text("option_id")
+      .references(() => options.id)
+      .notNull(),
   },
   (t) => ({
     pk: primaryKey({ columns: [t.pollId, t.optionId] }),
